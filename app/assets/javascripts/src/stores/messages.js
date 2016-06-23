@@ -103,6 +103,7 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
         timestamp: payload.action.timestamp,
         from: UserStore.user.id,
       })
+      messages[userID].lastAccess.currentUser = +new Date()
       MessagesStore.emitChange()
     },
   }
