@@ -89,7 +89,15 @@ class ChatStore extends BaseStore {
 const MessagesStore = new ChatStore()
 
 MessagesStore.dispatchToken = Dispatcher.register(payload => {
+  const actions = {
+    updateOpenChatID(payload) {
+      openChatID = payload.action.userID
+      messages[openChatID].lastAccess.currentUser = +new Date()
+      MessagesStore.emitChange()
+    }
+  }
 
+  actions[payload.action.type] && actions[payload.action.type](payload)
 })
 
 export default MessagesStore
