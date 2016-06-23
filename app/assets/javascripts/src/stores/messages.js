@@ -1,5 +1,6 @@
 import Dispatcher from '../dispatcher'
 import BaseStore from '../base/store'
+import UserStore from '../stores/user'
 
 const messages = {
   2: {
@@ -94,7 +95,16 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
       openChatID = payload.action.userID
       messages[openChatID].lastAccess.currentUser = +new Date()
       MessagesStore.emitChange()
-    }
+    },
+    sendMessage(payload) {
+      const userID = payload.action.userID
+      messages[userID].messages.push({
+        contents: payload.action.message,
+        timestamp: payload.action.timestamp,
+        from: UserStore.user.id,
+      })
+      MessagesStore.emitChange()
+    },
   }
 
   actions[payload.action.type] && actions[payload.action.type](payload)
