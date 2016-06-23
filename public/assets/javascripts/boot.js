@@ -1796,7 +1796,7 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
         while(index--)$instance[ADDER](index, index);
         return !$instance.has(-0);
       });
-    if(!ACCEPT_ITERABLES){ 
+    if(!ACCEPT_ITERABLES){
       C = wrapper(function(target, iterable){
         anInstance(target, C, NAME);
         var that = inheritIfRequired(new Base, target, C);
@@ -1950,7 +1950,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 },{"./_core":40,"./_ctx":42,"./_global":55,"./_hide":57,"./_redefine":104}],50:[function(require,module,exports){
 var MATCH = require('./_wks')('match');
@@ -4441,7 +4441,7 @@ var $export = require('./_export')
 $export($export.S + $export.F * !($acosh
   // V8 bug: https://code.google.com/p/v8/issues/detail?id=3509
   && Math.floor($acosh(Number.MAX_VALUE)) == 710
-  // Tor Browser bug: Math.acosh(Infinity) -> NaN 
+  // Tor Browser bug: Math.acosh(Infinity) -> NaN
   && $acosh(Infinity) == Infinity
 ), 'Math', {
   acosh: function acosh(x){
@@ -4459,14 +4459,14 @@ function asinh(x){
   return !isFinite(x = +x) || x == 0 ? x : x < 0 ? -asinh(-x) : Math.log(x + Math.sqrt(x * x + 1));
 }
 
-// Tor Browser bug: Math.asinh(0) -> -0 
+// Tor Browser bug: Math.asinh(0) -> -0
 $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', {asinh: asinh});
 },{"./_export":49}],170:[function(require,module,exports){
 // 20.2.2.7 Math.atanh(x)
 var $export = require('./_export')
   , $atanh  = Math.atanh;
 
-// Tor Browser bug: Math.atanh(-0) -> 0 
+// Tor Browser bug: Math.atanh(-0) -> 0
 $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
   atanh: function atanh(x){
     return (x = +x) == 0 ? x : Math.log((1 + x) / (1 - x)) / 2;
@@ -4905,7 +4905,7 @@ $export($export.P + $export.F * ($fails(function(){
 })), 'Number', {
   toPrecision: function toPrecision(precision){
     var that = aNumberValue(this, 'Number#toPrecision: incorrect invocation!');
-    return precision === undefined ? $toPrecision.call(that) : $toPrecision.call(that, precision); 
+    return precision === undefined ? $toPrecision.call(that) : $toPrecision.call(that, precision);
   }
 });
 },{"./_a-number-value":21,"./_export":49,"./_fails":51}],197:[function(require,module,exports){
@@ -7950,7 +7950,7 @@ module.exports.Dispatcher = require('./lib/Dispatcher');
  * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @providesModule Dispatcher
- * 
+ *
  * @preventMunge
  */
 
@@ -44583,7 +44583,7 @@ module.exports = performanceNow;
  *
  * @providesModule shallowEqual
  * @typechecks
- * 
+ *
  */
 
 'use strict';
