@@ -38,7 +38,7 @@ class UserList extends React.Component {
     MessagesStore.onChange(this.onStoreChange.bind(this))
   }
   componentWillUnmount() {
-    MessagesStore.onChange(this.onStoreChange.bind(this))
+    MessagesStore.offChange(this.onStoreChange.bind(this))
   }
   onStoreChange() {
     this.setState(this.getStateFromStore())
