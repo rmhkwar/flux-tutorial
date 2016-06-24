@@ -18,7 +18,7 @@ class MessagesBox extends React.Component {
     return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID())
   }
   componentWillMount() {
-    MessagesStore.addChangeListener(this.onStoreChange.bind(this))
+    MessagesStore.onChange(this.onStoreChange.bind(this))
   }
   componentWillUnmount() {
     MessagesStore.offChange(this.onStoreChange.bind(this))
