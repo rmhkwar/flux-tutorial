@@ -12,9 +12,9 @@ class MessagesBox extends React.Component {
     this.state = this.initialState
   }
   get initialState() {
-    return this.getStateFromState()
+    return this.getStateFromStore()
   }
-  getStateFromState() {
+  getStateFromStore() {
     return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID())
   }
   componentWillMount() {
@@ -24,7 +24,7 @@ class MessagesBox extends React.Component {
     MessagesStore.offChange(this.onStoreChange.bind(this))
   }
   onStoreChange() {
-    this.setState(this.getStateFromState())
+    this.setState(this.getStateFromStore())
   }
 
   render() {
