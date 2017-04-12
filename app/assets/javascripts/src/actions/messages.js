@@ -1,5 +1,6 @@
+import request from 'superagent'
 import Dispatcher from '../dispatcher'
-import {ActionTypes} from '../constants/app'
+import {ActionTypes, APIEndpoints, CSRFToken} from '../constants/app'
 
 export default {
   changeOpenChat(newUserID) {
@@ -15,6 +16,46 @@ export default {
       userID: userID,
       message: message,
       timestamp: +new Date(),
+    })
+  },
+
+  getMessages(){
+    return new Promise((resolve,reject)=>{
+      request
+      .get('/api/messages')
+      .ens((error,res)=>{
+        if(!error && res.status === 200){
+          const json = JSON.parse(res.text)
+          Dispatcher.handleServerAction({
+            type: ActionTypes.GET_MESSAGES,
+            json,
+          })
+          resolve(json)
+        }else{
+          reject(res)
+        }
+      })
+    })
+  },
+
+  getMessages(){
+    return new Promise((resolve,reject) => {
+      request
+      .post('${APIEndpoints.MESSAGE}')
+      .set('X-CSRF-Token',CSRFToken())
+      .send({message_id: messageId})
+      .end((error,res)=>{
+        if(!error && res.status === 200){
+          const json = JSON.parse(res.text)
+          Dispatcher.handleServerAction({
+            type: ActionTypes.POST_MESSAGES,
+            messageId,
+            json,
+          })
+        }else{
+          reject(res)
+        }
+      })
     })
   },
 }
