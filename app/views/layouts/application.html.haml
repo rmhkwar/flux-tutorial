@@ -7,4 +7,13 @@
     = javascript_include_tag '/assets/javascripts/boot.js'
     = csrf_meta_tags
   %body
+    %head
+      %ul.header
+        %li= link_to 'SAMPLE APP',root_path
+        %li= link_to '編集', 'users/edit'
+        %li= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+        %li= link_to 'ユーザーを検索する', 'users/search'
+        %li= link_to 'プロフィール','users/:id'
+
+
     = yield

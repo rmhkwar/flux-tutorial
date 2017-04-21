@@ -1,8 +1,22 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
+  # devise_for :users
   namespace :api,{format:'json'} do
-  	resources :messages
+  	resources :users do
+  		collection do
+  			get 'search'
+  		end
+  	end
+  	resources :messages, only: [:index, :create] 
+  	resources :friendships,only: [:index,:create, :destroy]
   end
 
-  resources :messages
   root to: 'messages#index'
+  devise_for :users
+  resources :users, only: [:show] do
+  	collection do
+  		get 'search'
+  	end
+  end
 end
