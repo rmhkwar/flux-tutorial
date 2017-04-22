@@ -18,6 +18,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise','3.5.1'
 gem 'ransack','1.8.2'
 
+# Image Uploader
+gem 'carrierwave'
+gem 'rmagick', require: 'RMagick'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.36.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -31,4 +37,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

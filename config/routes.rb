@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
-  get 'users/show'
 
-  # devise_for :users
-  namespace :api,{format:'json'} do
-  	resources :users do
-  		collection do
-  			get 'search'
-  		end
-  	end
-  	resources :messages, only: [:index, :create] 
-  	resources :friendships,only: [:index,:create, :destroy]
+  # Api Routing
+  namespace :api, { format: 'json' } do
+    resources :users do
+      collection do
+        get 'search'
+      end
+    end
+    resources :friendships, only: [:index, :create, :destroy]
+    resources :messages, only: [:index, :create] do
+      collection do
+        post 'upload_image'
+      end
+    end
   end
 
-  root to: 'messages#index'
+  # Web App Routing
+  root 'messages#index'
   devise_for :users
-  resources :users, only: [:show] do
-  	collection do
-  		get 'search'
-  	end
+  resources :users, only: :show do
+    collection do
+      get 'search'
+    end
   end
 end

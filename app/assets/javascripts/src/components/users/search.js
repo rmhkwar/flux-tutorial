@@ -1,19 +1,31 @@
 import React from 'react'
 import UsersAction from '../../actions/user'
 import UserList from './userList'
+import UserStore from '../../stores/messages'
 
 class Search extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = this.initialState
-  }
+  },
 
   get initialState() {
     return {
       value: '',
     }
-  }
+  },
+  componentWillMount() {
+    UserStore.onChange(this.onStoreChange.bind(this))
+  },
+
+  componentWillUnmount() {
+    UserStore.offChange(this.onStoreChange.bind(this))
+  },
+
+  onStoreChange() {
+    this.setState(this.getStateFromStore())
+  },
   handleKeyDown(e) {
     if (e.keyCode === 13) {
       UsersAction.searchUsers(this.state.value, )
@@ -22,12 +34,12 @@ class Search extends React.Component {
         value: '',
       })
     }
-  }
+  },
   updateValue(e) {
     this.setState({
       value: e.target.value,
     })
-  }
+  },
 
 	render() {
   return (

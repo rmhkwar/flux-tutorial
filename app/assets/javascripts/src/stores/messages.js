@@ -33,13 +33,21 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
 
     case ActionTypes.SEND_MESSAGE:
       // MessagesStore.setMessages(action.json.messages)　// 全部追加
-      console.log(message)
       messages.push(    // 最後の配列に追加
-        action.json.message,
+        action.json,
       )
-      console.log(action.json.message, messages)
+      console.log(action.json, messages)
+      MessagesStore.setMessages(messages)
       MessagesStore.emitChange()
       break
+
+    case ActionTypes.SEND_IMAGE:
+    messages.push(
+      action.json,
+    )
+    MessagesStore.setMessages(messages)
+    MessagesStore.emitChange()
+    break
   }
 
   return true

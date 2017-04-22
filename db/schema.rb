@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420020647) do
+ActiveRecord::Schema.define(version: 20170421064211) do
 
   create_table "friendships", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170420020647) do
     t.datetime "updated_at",   null: false
     t.integer  "to_user_id"
     t.integer  "from_user_id"
+    t.string   "image"
   end
 
   create_table "users", force: :cascade do |t|

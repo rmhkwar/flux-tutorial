@@ -22,6 +22,16 @@ class Api::MessagesController < ApplicationController
 
   end
 
+  def upload_image
+    message = Message.new(
+      to_user_id: params[:to_user_id],
+      from_user_id: current_user.id,
+      image: params[:image]
+    )
+    message.save
+    render json: message
+  end
+
   private
 
   def message_params

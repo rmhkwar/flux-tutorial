@@ -41,13 +41,22 @@ class MessagesBox extends React.Component {
         'message-box__item--from-current': this.state.messages.from_user_id !== openChatUserID,
         'clear': true,
       })
-      return (
+
+      if(message.image.url === null){
+        return (
         <li key={ index } className={ messageClasses }>
           <div className='message-box__item__contents'>
             { message.content }
           </div>
         </li>
-      )
+        )
+      }else{
+        return(
+          <li key = { index } className={ messageClasses }>
+            <img src= { message.image.url } className='message-box__item__contents message-box__item__image' />
+          </li>
+        )
+      }
     })
     return (
 
