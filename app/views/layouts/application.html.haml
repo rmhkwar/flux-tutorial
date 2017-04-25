@@ -8,12 +8,15 @@
     = csrf_meta_tags
   %body
     %head
-      %ul.header
-        %li= link_to 'SAMPLE APP',root_path
-        %li= link_to '編集', '/users/edit'
-        %li= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'
-        %li= link_to 'ユーザーを検索する', '/users/search'
-        %li= link_to 'プロフィール','/users/:id'
+      - if signed_in?
+        .header
+          %ul.headerlist
+            %li{class: "logo"}= link_to 'SAMPLE APP',root_path, data: {no_turbolink: true}
+            %li= link_to 'ユーザーを検索する', search_users_path, data: {no_turbolink: true}
+            %li= link_to '編集', edit_user_registration_path
+            %li= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link', data: { confirm: "本当にログアウトしますか？" }
+            %a{class: "profile profileimg"}=  gravatar_for current_user
+            %a{class: "profile"}= link_to current_user.name , user_path(current_user), data: {no_turbolink: true}
 
 
     = yield

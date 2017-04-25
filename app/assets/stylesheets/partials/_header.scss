@@ -6,5 +6,8 @@
   left: 0;
   right: 0;
   z-index: 998;
-  float:right;
+  &li {
+    left: 20;
+    float:left;
+  }
 }

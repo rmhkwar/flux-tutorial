@@ -43,17 +43,16 @@ User.dispatchToken = Dispatcher.register(payload => {
       User.emitChange()
       break
 
-    // case ActionTypes.UPDATE_OPEN_CHAT_ID:
-    //   openChatID = action.userID
-    //   // messages[openChatID].lastAccess.currentUser = +new Date()
-    //    MessagesStore.emitChange()
-    //   break
-
     case ActionTypes.GET_FRIENDSHIPS:
       User.setOpenChatUserID(action.json.user.id)
       User.setUsers(action.json.user)
       User.emitChange()
       break
+
+      case ActionTypes.DELETE_FRIENDSHIPS:
+        User.setUsers(action.json.user)
+        User.emitChange()
+        break
 
   }
 

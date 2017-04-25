@@ -8,43 +8,46 @@ class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
-  },
+  }
 
   get initialState() {
     return {
       value: '',
     }
-  },
+  }
   componentWillMount() {
     UserStore.onChange(this.onStoreChange.bind(this))
-  },
+  }
 
   componentWillUnmount() {
     UserStore.offChange(this.onStoreChange.bind(this))
-  },
+  }
 
   onStoreChange() {
     this.setState(this.getStateFromStore())
-  },
+  }
   handleKeyDown(e) {
-    if (e.keyCode === 13) {
+     {
       UsersAction.searchUsers(this.state.value, )
-
-      this.setState({
+      if (e.keyCode === 13){
+        UsersAction.searchUsers(this.state.value, )
+        this.setState({
         value: '',
-      })
+        })
+      }
     }
-  },
+  }
   updateValue(e) {
     this.setState({
       value: e.target.value,
     })
-  },
+  }
 
 	render() {
   return (
-    <div className='reply-box'>
-        <h1>Search </h1>
+    <div className = 'search'>
+    <div className='search-box'>
+        <h2>ユーザーを検索する</h2>
         <input
           value={ this.state.value }
           onKeyDown={ this.handleKeyDown.bind(this) }
@@ -56,6 +59,7 @@ class Search extends React.Component {
           Press <span className='search-box__tip__button'>Enter</span> to search
         </span>
         <UserList />
+      </div>
       </div>
 
     )

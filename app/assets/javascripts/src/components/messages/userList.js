@@ -21,7 +21,6 @@ class UserList extends React.Component {
     const openChatUserID = UserStore.getOpenChatUserID()
     const friendships = UserStore.getUsers()
     MessagesAction.getMessages(openChatUserID)
-    console.log(openChatUserID)
     return {
       openChatUserID: openChatUserID,
       friendships: friendships,
@@ -40,6 +39,10 @@ class UserList extends React.Component {
     UserAction.changeOpenChat(id)
   }
 
+  deleteFriendships(userID) {
+  UserAction.deleteFriendships(userID)
+}
+
   render() {
     const {friendships, openChatUserID} = this.state
 
@@ -56,6 +59,16 @@ class UserList extends React.Component {
           className={ itemClasses }
           key={ index }
         >
+        <div
+          onClick={ this.deleteFriendships.bind(this, user.id) }
+          className='pull-right'
+        >
+          <span
+            aria-hidden={true}
+            className='glyphicon glyphicon-remove'
+            >
+          </span>
+        </div>
           <div className='user-list__item__picture'>
             <img src={ user.profilePicture } />
           </div>

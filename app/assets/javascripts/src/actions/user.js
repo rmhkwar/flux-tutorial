@@ -44,6 +44,29 @@ export default {
       })
     })
   },
+  deleteFriendships(userID) {
+    return new Promise((resolve, reject) => {
+      request
+      .delete(`${APIEndpoints.DELETE_FRIENDSHIPS + userID}`)
+      .set('X-CSRF-Token', CSRFToken())
+      .send({
+        to_user_id: userID,
+      })
+      .end((error, res) => {
+        if (!error && res.status === 200) {
+          console.log(json)
+          debugger
+          Dispatcher.handleServerAction({
+            type: ActionTypes.DELETE_FRIENDSHIPS,
+            json,
+          })
+          resolve(json)
+        } else {
+          reject(res)
+        }
+      })
+    })
+  },
   getFriendships() {
     return new Promise((resolve, reject) => {
       request

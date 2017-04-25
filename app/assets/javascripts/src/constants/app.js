@@ -8,6 +8,7 @@ export
   GET_FRIENDSHIPS: null,
 	GET_MESSAGES: null,
 	SEND_IMAGE: null,
+	DELETE_FRIENDSHIPS: null,
 	})
 
 export function CSRFToken() {
@@ -21,5 +22,6 @@ export const APIEndpoints = {
   SEARCH_USERS: APIRoot + '/users/search',
   CREATE_FRIENDSHIP: APIRoot + '/friendships',
   GET_FRIENDSHIPS: APIRoot + '/friendships',
-	SEND_IMAGE: APIRoot + '/messages/upload_image'
+	SEND_IMAGE: APIRoot + '/messages/upload_image',
+	DELETE_FRIENDSHIPS: APIRoot + '/friendships/',
 }
