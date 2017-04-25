@@ -55,6 +55,7 @@ export default {
       .end((error, res) => {
         if (!error && res.status === 200) {
           console.log(json)
+          // 消す
           debugger
           Dispatcher.handleServerAction({
             type: ActionTypes.DELETE_FRIENDSHIPS,

@@ -40,6 +40,7 @@ class UserList extends React.Component {
   }
 
   deleteFriendships(userID) {
+  // インデント
   UserAction.deleteFriendships(userID)
 }
 
@@ -47,6 +48,7 @@ class UserList extends React.Component {
     const {friendships, openChatUserID} = this.state
 
     const friends_list = friendships.map((user, index) => {
+    // インデント
     const itemClasses = classNames({
       'user-list__item': true,
       'clear': true,

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable	
+         :recoverable, :rememberable, :trackable, :validatable
   has_many :messages, foreign_key: :from_user_id
 
 
@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :friends_of_from_user, :through => :friendships_of_from_user, :source => 'to_user'
   has_many :friends_of_to_user, :through => :friendships_of_to_user, :source => 'from_user'
 
+# このメソッド使ってない
+# インデント
  def friends
     friends_of_from_user + friends_of_to_user
   end

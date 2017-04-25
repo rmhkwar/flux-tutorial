@@ -19,6 +19,7 @@ module Api
   	@friends = friendships.map do |friendship|
   		User.find(friendship.to_user_id)
   	end
+    # userではなくusersで渡すべき（命名）
     render json: {user: @friends}
   end
 
@@ -28,6 +29,7 @@ module Api
   		User.find(friendship.to_user_id)
   	end
 
+    # 変数名変えた方が分かりやすいね
     ffriendships = Friendship.where(to_user_id: current_user.id)
     ffriends = ffriendships.map do |friendship|
       User.find(friendship.from_user_id)
