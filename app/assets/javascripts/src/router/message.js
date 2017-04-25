@@ -13,9 +13,9 @@ export default class MessageRouter extends BaseRouter {
     next()
   }
 
-	roadMessage(ctx, next) {
+  roadMessage(ctx, next) {
     MessagesAction.getMessages()
     next()
-	}
+  }
 
 }

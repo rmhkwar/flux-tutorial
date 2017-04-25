@@ -9,6 +9,7 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     @user = User.new(user_params)
+    # インデント
         if @user.save
           flash[:success] = "Welcome to the Sample App!"
           redirect_to @user
